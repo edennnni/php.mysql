@@ -1,5 +1,8 @@
 <?php 
 
+$student=["edeni", "blini", "aniki", "darisi", "nil", "shpati" ]
+
+
 $grade = 80;
 
 if ($grade <= 90); {
@@ -36,4 +39,27 @@ case "Friday":
 default:
     echo "Nuk ki kurs";
 }
+ 
+for($x = 50; $x =< 100 $x = $x +2){
+    echo($x)
+}
+
+foreach($student as $student ) {
+    echo($student."<br>");
+}
+
+while(strlen($string)){
+    echo($string);
+    $string = $string. "g";
+} 
+
+
+
+
+
+
+
+
+
+
 ?>

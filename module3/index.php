@@ -18,7 +18,6 @@ elseif ($grade <= 50 && $grade )
 
 <?php
 
-
 $day = "Monday"
 switch($day){
 case "Monday":
@@ -52,14 +51,4 @@ while(strlen($string)){
     echo($string);
     $string = $string. "g";
 } 
-
-
-
-
-
-
-
-
-
-
 ?>

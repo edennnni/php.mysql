@@ -23,7 +23,7 @@ for($col=0; $col<3;$col++){
 echo "</ul>"
 }
 
-//nested loops
+// Nested loops
 $arrays = array(
 
 array(1,2,3)

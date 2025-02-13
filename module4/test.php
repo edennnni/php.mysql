@@ -1,6 +1,6 @@
 <php 
 
-$array = ["p" , "a" ,  "b"]
+$array = 
 print_r(%array);
 
 

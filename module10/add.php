@@ -5,12 +5,13 @@ if(isset($_POST['submit'])){
     $username = $_POST["username"];
     $email = $_POST["email"]
     $sql = "insert INTO users (name,username,email)
-    VALVES(NAME,USERNAME,EMAIL)";
+    VALUES(:NAME, :USERNAME, :EMAIL)"
     
     $sqlQuery = $conn -> prepare ($sql);
     $sqlQuery -> $bindParam(':name', '$name');
     $sqlQuery = $conn -> prepare (':$username', '$username');
     $sqlQuery = $conn -> prepare (':email', '$email');
+    $sqlQuery->execute();
 }
 
 ?>

@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
 
     if(empty($emri)) \\ empty($username) \\ empty($password) \\ empty($confirm_password){
         echo "you have not filled in all the fields";
-    }else{
+    }else {
         $sql="INSERT INTO users(emri,username,email,password,confirm_password) VALUES (:emri,:username,:email,:password,:confirm_password)";
 
         $insertSQL=$conn->prepare($sql);

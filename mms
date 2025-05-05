@@ -27,4 +27,3 @@ CREATE TABLE `movies`(
 CREATE TABLE `bookings`( `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, `users_id` varchar(255) NOT NULL,
  `movie_id` varchar(255) NOT NULL, `nr_tickets` varchar(255) NOT NULL, `date` varchar(255) NOT NULL, `is_approved`
   varchar(255) NOT NULL, `time` varchar(255) );
-

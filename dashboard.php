@@ -1,4 +1,4 @@
- <?php 
+<?php 
  session_start();
 include_once('config.php');
 
@@ -132,7 +132,7 @@ $users_data=$selectUsers->fetchAll();
            </tbody>
          </table>
        </div>
-      <?php  } else {
+      <?php  else {
        
      } ?>
      </main>

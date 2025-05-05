@@ -98,9 +98,9 @@ $users_data=$selectUsers->fetchAll();
           <thead>
             <tr>
               <th scope="col">Id</th>
-              <th scope="col">movie name</th>
-              <th scope="col">movie description</th>
-              <th scope="col">movie quality</th>
+              <th scope="col">Movie Name</th>
+              <th scope="col">Movie Description</th>
+              <th scope="col">Movie Quality</th>
               <th scope="col"></th>
               <th scope="col">Delete</th>
             </tr>
@@ -124,21 +124,18 @@ $users_data=$selectUsers->fetchAll();
                     <td><a href="editUsers.php?id=<?= $user_data['id'];?>">Update</a></td>
                     <td><a href="deleteUsers.php?id=<?= $user_data['id'];?>">Delete</a></td>
                 </tr>
+                <?php } ?>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
 
+<script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+<script src="dashboard.js"></script>
 
-          <?php  } ?>
-           
-            
-           </tbody>
-         </table>
-       </div>
-      <?php  } else {
-       
-     } ?>
-     </main>
-   </div>
- </div>
- 
- 
-  </body>
-  </html>
+</body>
+</html>

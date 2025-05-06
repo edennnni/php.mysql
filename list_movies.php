@@ -101,7 +101,7 @@ $users_data=$selectUsers->fetchAll();
               <th scope="col">Movie Name</th>
               <th scope="col">Movie Description</th>
               <th scope="col">Movie Quality</th>
-              <th scope="col"></th>
+              <th scope="col">Update</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
@@ -139,3 +139,4 @@ $users_data=$selectUsers->fetchAll();
 
 </body>
 </html>
+<a href="movies.php" class="btn btn-primary">Add Movie</a>

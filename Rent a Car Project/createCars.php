@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $year = $_POST['year'];
     $price = $_POST['price'];
     $image = $_POST['image'];
-    $conn->query("INSERT INTO cars (model, year, price_per_day, image_url) VALUES ('$model', '$year', '$price', '$image')");
+    $conn->query("INSERT INTO cars (modeli, year, price_per_day, image_url) VALUES ('$model', '$year', '$price', '$image')");
     header("Location: ../dashboard.php");
     exit();
 }

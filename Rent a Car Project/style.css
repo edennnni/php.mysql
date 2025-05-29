@@ -1,0 +1,73 @@
+/* Tesla-Inspired Dashboard Style */
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.tesla-dashboard {
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.tesla-dashboard h1,
+.tesla-dashboard h2 {
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+.tesla-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.tesla-dashboard th,
+.tesla-dashboard td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tesla-dashboard th {
+  background-color: #fafafa;
+  font-weight: 600;
+  color: #222;
+}
+
+.tesla-dashboard tr:hover {
+  background-color: #f9f9f9;
+}
+
+.tesla-dashboard a {
+  color: #0071e3;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.tesla-dashboard a:hover {
+  text-decoration: underline;
+}
+
+/* Add some flair to your buttons or links if you want */
+.tesla-button {
+  background-color: #0071e3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.tesla-button:hover {
+  background-color: #005bb5;
+}

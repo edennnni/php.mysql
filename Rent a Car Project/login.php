@@ -3,147 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - Rent a Tesla</title>
+  <title>Signup Page</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+
+html{
+    background-color:rgb(3, 35, 70);
+  }
 
     body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to right, #000000, #1a1a1a);
-      color: #fff;
+      font-family: Arial, sans-serif;
+      background:rgba(5, 1, 58, 0);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
-
     .signup-container {
-      background: #fff;
-      color: #000;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      width: 320px;
-      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 300px;
     }
-
     .signup-container h2 {
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 20px;
     }
-
-    img {
-      margin-bottom: 1rem;
-    }
-
     input[type="text"],
-    input[type="password"],
-    input[type="email"] {
+    input[type="email"],
+    input[type="password"] {
       width: 100%;
       padding: 10px;
-      margin-bottom: 1rem;
+      margin: 8px 0 16px 0;
       border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
+      border-radius: 4px;
     }
-
     button {
       width: 100%;
-      background-color: #000;
-      color: #fff;
-      padding: 0.75rem;
+      padding: 10px;
+      background-color: #007BFF;
       border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: bold;
+      border-radius: 4px;
+      color: white;
+      font-size: 16px;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
-
     button:hover {
-      background-color: #333;
-    }
-
-    .checkbox {
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-
-    a {
-      color: #007bff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    p {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-    }
-
-    label {
-      display: block;
-      text-align: left;
-      font-weight: bold;
-      margin-bottom: 4px;
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
   <div class="signup-container">
     <h2>Login</h2>
-    <form action="loginLogic.php" method="post">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla Logo" width="80" height="40">
-      
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="Enter your username" required>
+    <main class="form-signin">
+  <form action="loginLogic.php" method="post">
+    <img class="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+      <label for="floatingInput">Username</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+      <label for="floatingPassword">Password</label>
+    </div>
 
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="remember"> Remember me
-        </label>
-      </div>
-
-      <button type="submit" name="submit">Sign In</button>
-
-      <p>Don't have an account? <a href="signup.php">Sign up</a></p>
-    </form>
-  </div>
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit">Sign in</button>
+	<p>Don`t have an account:<a href="signup.php" >Sign up</a> </p>
+  </form>
 </body>
 </html>
-<?php
-include('config.php'); // provides $conn and session started
-
-if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Prepare statement to prevent SQL injection
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
-    $stmt->bindParam(':username', $username);
-    $stmt->execute();
-
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user) {
-        // Verify password (assuming password was hashed with password_hash)
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            echo "Invalid password.";
-        }
-    } else {
-        echo "User not found.";
-    }
-}
-?>

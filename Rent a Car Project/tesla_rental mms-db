@@ -1,0 +1,270 @@
+- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 07, 2025 at 05:35 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `tesla_rental`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` int(11) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `model_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `locations`
+--
+
+CREATE TABLE `locations` (
+  `id` int(11) NOT NULL,
+  `location_name` varchar(100) NOT NULL,
+  `address` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `models`
+--
+
+CREATE TABLE `models` (
+  `id` int(11) NOT NULL,
+  `model_name` varchar(100) NOT NULL,
+  `year` year(4) NOT NULL,
+  `description` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `models`
+--
+
+INSERT INTO `models` (`id`, `model_name`, `year`, `description`) VALUES
+(1, 'Model S', '2023', 'Luxury sedan with long range'),
+(2, 'Model 3', '2024', 'Affordable and fast electric sedan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prices`
+--
+
+CREATE TABLE `prices` (
+  `id` int(11) NOT NULL,
+  `model_id` int(11) NOT NULL,
+  `daily_price` decimal(10,2) DEFAULT NULL,
+  `weekly_price` decimal(10,2) DEFAULT NULL,
+  `monthly_price` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `prices`
+--
+
+INSERT INTO `prices` (`id`, `model_id`, `daily_price`, `weekly_price`, `monthly_price`) VALUES
+(2, 1, 0.01, 0.90, 79.00),
+(3, 1, 0.01, 0.32, 0.79);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` int(11) NOT NULL,
+  `model_id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `rating` int(11) DEFAULT NULL CHECK (`rating` >= 1 and `rating` <= 5),
+  `comment` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tesla_models`
+--
+
+CREATE TABLE `tesla_models` (
+  `id` int(11) NOT NULL,
+  `model_name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `availability` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(255) NOT NULL,
+  `emri` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `confirm_password` varchar(255) NOT NULL,
+  `is_admin` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `emri`, `username`, `email`, `password`, `confirm_password`, `is_admin`) VALUES
+(1, 'NilBakija', 'nilib', 'nilibb@gmail.com', '123456', '123456', 'true'),
+(2, 'edenkurtolli', 'edenk', 'edenkurtolli@gmail.com', '$2y$10$JVmhwEbvvkIBzZWZvRHNButvu8B8TRlq3PeQ5MhvPaBhLuvOAD0Ea', '', ''),
+(3, 'NilBakija', 'nilib', 'nilibb@gmail.com', '123456', '123456', 'true');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `model_id` (`model_id`),
+  ADD KEY `location_id` (`location_id`);
+
+--
+-- Indexes for table `locations`
+--
+ALTER TABLE `locations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `models`
+--
+ALTER TABLE `models`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `prices`
+--
+ALTER TABLE `prices`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `model_id` (`model_id`);
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `model_id` (`model_id`);
+
+--
+-- Indexes for table `tesla_models`
+--
+ALTER TABLE `tesla_models`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `locations`
+--
+ALTER TABLE `locations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `models`
+--
+ALTER TABLE `models`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `prices`
+--
+ALTER TABLE `prices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tesla_models`
+--
+ALTER TABLE `tesla_models`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`model_id`) REFERENCES `tesla_models` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `prices`
+--
+ALTER TABLE `prices`
+  ADD CONSTRAINT `prices_ibfk_1` FOREIGN KEY (`model_id`) REFERENCES `models` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`model_id`) REFERENCES `tesla_models` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
